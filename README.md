@@ -28,6 +28,7 @@ Prerequisites
 
 Node.js: Version 18 or higher.
 npm or yarn: Package manager for installing dependencies.
+Docker: Required for running the application via Docker (optional).
 
 Installation
 
@@ -62,6 +63,46 @@ or
 yarn build
 yarn start
 
+Running with Docker
+You can run the application using Docker, either by building the image locally, pulling a pre-built image from Docker Hub, or using Docker Compose for a streamlined setup.
+Option 1: Building the Docker Image Locally
+
+Ensure you have a Dockerfile in the project root (see project structure).
+Build the Docker image:docker build -t yash7749/react-reconciliation-demo:latest .
+
+
+Run the container:docker run -p 3000:3000 yash7749/react-reconciliation-demo:latest
+
+
+Open http://localhost:3000 in your browser.
+
+Option 2: Using the Pre-built Docker Image
+If you don't want to clone the repository or build the image, you can pull the pre-built image from Docker Hub:
+
+Pull the image:docker pull yash7749/react-reconciliation-demo:latest
+
+
+Run the container:docker run -p 3000:3000 yash7749/react-reconciliation-demo:latest
+
+
+Open http://localhost:3000 in your browser.
+
+Option 3: Using Docker Compose
+For a one-command setup that handles dependency installation, building, and running the application:
+
+Ensure you have a docker-compose.yml file in the project root (see below).
+Run the application:docker-compose up
+
+
+Open http://localhost:3000 in your browser.
+To stop the application, press Ctrl+C or run:docker-compose down
+
+
+
+Docker Image Summary
+After building or pulling the image, you can view a summary of image vulnerabilities and recommendations:
+docker scout quickview yash7749/react-reconciliation-demo:latest
+
 Project Structure
 react-reconciliation-evolution/
 ├── app/
@@ -79,6 +120,9 @@ react-reconciliation-evolution/
 │   └── page.tsx
 ├── public/
 ├── styles/
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 ├── next.config.js
 ├── tsconfig.json
 ├── tailwind.config.js
@@ -91,6 +135,9 @@ reconciliation-evolution/components/: Houses reusable React components for each 
 futureReconcilerProblem/: Contains components for future challenges (fine-grained reactivity, partial hydration, and compiler optimizations).
 public/: Static assets like images or fonts.
 styles/: Global styles and Tailwind CSS configuration.
+Dockerfile: Defines the Docker image build process.
+docker-compose.yml: Configures services for running the application with Docker Compose.
+.dockerignore: Excludes unnecessary files from the Docker build context.
 next.config.js: Next.js configuration file.
 tsconfig.json: TypeScript configuration.
 tailwind.config.js: Tailwind CSS configuration.
